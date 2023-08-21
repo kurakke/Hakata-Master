@@ -7,6 +7,13 @@ const app = express();
 const port = process.env.PORT || 7777;
 const TOKEN = process.env.LINE_ACCESS_TOKEN;
 
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'));
 app.use('/webhook', webhookRouter());
 
