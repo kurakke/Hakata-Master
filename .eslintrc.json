@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:sort/recommended"
+  ],
+  "plugins": ["import", "sort", "@typescript-eslint"],
+  "rules": {
+    "import/named": 0,
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "sort/imports": ["off"]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
