@@ -10,9 +10,9 @@ const TOKEN = process.env.LINE_ACCESS_TOKEN;
 
 app.use(express.json());
 app.use(
-  express.urlencoded({
-    extended: true,
-  })
+    express.urlencoded({
+        extended: true,
+    })
 );
 
 app.use('/webhook', webhookRouter);
