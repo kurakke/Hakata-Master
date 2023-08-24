@@ -1,10 +1,13 @@
-import express from "express";
+import { middleware } from '@line/bot-sdk';
+import { Router } from 'express';
 
-const router = express.Router();
-const webhookController = require("../controller/webhook.controller");
+import { webhookController } from '../controllers/webhook.controller';
+import { middlewareConfig } from '../utils/lineConfig';
 
-router.get("/", webhookController.sample);
+export const webhookRouter = () => {
+  const router = Router();
 
-module.exports = router;
+  router.post('/', middleware(middlewareConfig), webhookController);
 
-export default router;
+  return router;
+};
