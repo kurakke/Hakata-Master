@@ -1,4 +1,4 @@
-import { TextMessage, WebhookEvent } from '@line/bot-sdk';
+import { WebhookEvent } from '@line/bot-sdk';
 import { Router } from 'express';
 
 import { parrot } from '../controllers/webhook.controller';
@@ -13,22 +13,23 @@ export const webhookRouter = () => {
     const results = await Promise.all(
       events.map(async (e: WebhookEvent) => {
         try {
-          if (e.type !== 'message' || e.message.type !== 'text') {
-            return;
-          }
-
-          const { replyToken } = e;
-          const text = e.message.text;
           let generatedText = '';
 
-          generatedText = parrot(text);
+          switch (e.type) {
+            case 'message':
+              if (e.message.type === 'text') {
+                const text = e.message.text;
 
-          const response: TextMessage = {
-            text: generatedText,
-            type: 'text',
-          };
+                generatedText = parrot(text);
+              } else {
+                break;
+              }
 
-          await lineClient.replyMessage(replyToken, response);
+              await lineClient.replyMessage(e.replyToken, { text: generatedText, type: 'text' });
+              break;
+            default:
+              break;
+          }
         } catch (e) {
           if (e instanceof Error) {
             return res.status(500).json({ error: e.message });
