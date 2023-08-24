@@ -2,6 +2,7 @@ import { WebhookEvent } from '@line/bot-sdk';
 import { Router } from 'express';
 
 import { parrot } from '../controllers/webhook/parrot';
+import { training } from '../controllers/webhook/training';
 import { lineClient } from '../lib/line/lineClient';
 
 export const webhookRouter = () => {
@@ -22,9 +23,11 @@ export const webhookRouter = () => {
 
                 if (text === '歴史') {
                   //
+                } else if (text === 'トレーニング') {
+                  generatedText = training();
+                } else {
+                  generatedText = parrot(text);
                 }
-
-                generatedText = parrot(text);
               } else {
                 break;
               }
