@@ -17,6 +17,6 @@ export const richMenu = async () => {
 
   await setDefaultRichMenu(richMenuAId);
 
-  await setRichMenuAlias(richMenuAId, 'main-menu-alias');
-  await setRichMenuAlias(richMenuBId, 'text-generate-menu-alias');
+  await setRichMenuAlias(richMenuAId, 'richmenu-alias-a');
+  await setRichMenuAlias(richMenuBId, 'richmenu-alias-b');
 };
