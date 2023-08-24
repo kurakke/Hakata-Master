@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import express, { Request, Response } from 'express';
+
 import { webhookRouter } from './routes/webhook.route';
 
 const app = express();
 const port = process.env.PORT || 7777;
-const TOKEN = process.env.LINE_ACCESS_TOKEN;
 
 app.use(express.json());
 app.use(
