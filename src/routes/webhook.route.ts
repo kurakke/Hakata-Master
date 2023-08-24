@@ -1,6 +1,7 @@
 import { WebhookEvent } from '@line/bot-sdk';
 import { Router } from 'express';
 
+import { history } from '../controllers/webhook/history';
 import { parrot } from '../controllers/webhook/parrot';
 import { lineClient } from '../lib/line/lineClient';
 
@@ -21,7 +22,7 @@ export const webhookRouter = () => {
                 const text = e.message.text;
 
                 if (text === '歴史') {
-                  //
+                  generatedText = history(generatedText)
                 }
 
               } else {
