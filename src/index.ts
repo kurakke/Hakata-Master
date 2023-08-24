@@ -16,6 +16,5 @@ app.use(
 app.use('/webhook', webhookRouter);
 
 app.get('/', (req: Request, res: Response) => res.send('Hello World!'));
-app.use('/webhook', webhookRouter);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
