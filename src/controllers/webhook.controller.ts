@@ -1,7 +1,7 @@
 import { TextMessage, WebhookEvent } from '@line/bot-sdk';
 import { Request, Response } from 'express';
 
-import { lineClient } from '../lib/line/lineClient';
+import { lineClient } from '../lib/lineClient';
 
 export const webhookController = async (req: Request, res: Response) => {
   const events: WebhookEvent[] = req.body.events;
