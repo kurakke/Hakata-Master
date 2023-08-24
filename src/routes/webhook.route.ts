@@ -24,8 +24,8 @@ export const webhookRouter = () => {
                   //
                 }
 
-                generatedText = parrot(text);
               } else {
+                parrot(generatedText)
                 break;
               }
 
