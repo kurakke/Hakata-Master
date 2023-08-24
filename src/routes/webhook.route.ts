@@ -22,7 +22,7 @@ export const webhookRouter = () => {
                 const text = e.message.text;
 
                 if (text === '歴史') {
-                  generatedText = history(generatedText)
+                  history
                 }
 
               } else {
