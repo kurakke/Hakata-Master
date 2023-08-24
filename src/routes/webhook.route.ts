@@ -27,6 +27,14 @@ export const webhookRouter = () => {
 
               await lineClient.replyMessage(e.replyToken, { text: generatedText, type: 'text' });
               break;
+            case 'postback':
+              if (e.postback.data.split(',')[0] === 'history') {
+                // ...
+              } else if (e.postback.data.split(',')[0] === 'quiz') {
+                // ...
+              }
+
+              break;
             default:
               break;
           }
