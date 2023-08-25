@@ -2,6 +2,7 @@ import { WebhookEvent } from '@line/bot-sdk';
 import { Request, Response } from 'express';
 
 import { parrot } from './parrot';
+import { training } from './training';
 
 export const webhookController = async (req: Request, res: Response) => {
   const events: WebhookEvent[] = req.body.events;
@@ -12,12 +13,15 @@ export const webhookController = async (req: Request, res: Response) => {
         switch (e.type) {
           case 'message':
             if (e.message.type === 'text') {
-              const text = e.message.text;
+              // 最初の\nでのみ分割
+              const splittedTexts = e.message.text.split(/(?<=^[^\n]+)\n/);
 
-              if (text === '歴史') {
+              if (splittedTexts[0] === '歴史') {
                 //
+              } else if (splittedTexts[0] === '練習') {
+                training(splittedTexts[1], e.replyToken);
               } else {
-                parrot(text, e);
+                parrot(splittedTexts[0], e);
               }
             } else {
               break;
