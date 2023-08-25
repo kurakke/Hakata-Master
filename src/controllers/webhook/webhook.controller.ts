@@ -2,8 +2,10 @@ import { WebhookEvent } from '@line/bot-sdk';
 import { Request, Response } from 'express';
 
 import { history as historyMessage } from './message/history';
+import { quiz } from './message/quiz';
 import { parrot } from './parrot';
 import { history as historyPostback } from './postback/hitory';
+import { nextQuiz } from './postback/nextQuiz';
 import { training } from './training';
 
 export const webhookController = async (req: Request, res: Response) => {
@@ -18,7 +20,9 @@ export const webhookController = async (req: Request, res: Response) => {
               // 最初の\nでのみ分割
               const splittedTexts = e.message.text.split(/(?<=^[^\n]+)\n/);
 
-              if (splittedTexts[0] === '歴史') {
+              if (splittedTexts[0] === 'クイズ') {
+                quiz(e.replyToken, 3);
+              } else if (splittedTexts[0] === '歴史') {
                 historyMessage(e, splittedTexts[0]);
               } else if (splittedTexts[0] === '練習') {
                 training(splittedTexts[1], e.replyToken);
@@ -35,8 +39,13 @@ export const webhookController = async (req: Request, res: Response) => {
               console.log('history');
               await historyPostback(e, e.postback.data);
               // ...
-            } else if (e.postback.data.split(',')[0] === 'quiz') {
-              // ...
+            } else if (e.postback.data.split('&')[0] === 'quiz') {
+              if (e.postback.data.split('&')[5]) {
+                const data = e.postback.data.split('&');
+                nextQuiz(e.replyToken, 3, data[1], data[2], data[3], data[4], data[5]);
+              } else {
+                quiz(e.replyToken, 3);
+              }
             }
 
             break;
