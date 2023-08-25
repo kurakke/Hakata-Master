@@ -5,18 +5,13 @@ import {
   setRichMenuImage,
 } from '../../lib/line/rich-menu/richMenuHandler';
 
-import { A_MENU_OBJECT } from './rich-menu-object/aMenuObject';
-import { B_MENU_OBJECT } from './rich-menu-object/bMenuObject';
+import { MAIN_MENU_OBJECT } from './rich-menu-object/mainMenuObject';
 
 export const richMenu = async () => {
-  const richMenuAId = await createRichMenu(A_MENU_OBJECT);
-  await setRichMenuImage(richMenuAId, '../../../../public/images/richmenu-a.png');
-
-  const richMenuBId = await createRichMenu(B_MENU_OBJECT);
-  await setRichMenuImage(richMenuBId, '../../../../public/images/richmenu-b.png');
+  const richMenuAId = await createRichMenu(MAIN_MENU_OBJECT);
+  await setRichMenuImage(richMenuAId, '../../../../public/images/main-menu.png');
 
   await setDefaultRichMenu(richMenuAId);
 
-  await setRichMenuAlias(richMenuAId, 'richmenu-alias-a');
-  await setRichMenuAlias(richMenuBId, 'richmenu-alias-b');
+  await setRichMenuAlias(richMenuAId, 'main-menu-alias');
 };
