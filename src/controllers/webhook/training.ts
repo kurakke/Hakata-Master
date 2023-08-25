@@ -7,8 +7,17 @@ import { openAiConfig } from '../../utils/openAiConfig';
 
 export const training = async (text: string, replyToken: string) => {
   if (openAiConfig.apiKey) {
+    const systems: CreateChatCompletionRequestMessage[] = [
+      {
+        content: '博多弁で話す人',
+        role: 'system',
+      },
+    ];
+
     // TODO: チャット履歴を取得する必要がある
-    const messages: CreateChatCompletionRequestMessage[] = [];
+    const chatHistory: CreateChatCompletionRequestMessage[] = [];
+
+    const messages: CreateChatCompletionRequestMessage[] = [...systems, ...chatHistory];
 
     const reply = (await askGPT(text, messages)) || '';
 
