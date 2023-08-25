@@ -30,8 +30,9 @@ const questionFlexMessage:FlexMessage = {
           height: 'sm',
           action: {
             type: 'postback',
+            displayText: "Buy",
             label: '日本で一番高い山は？',
-            data: 'quiz&0'
+            data: 'history&0'
           },
           margin: 'md'
         },
@@ -41,8 +42,9 @@ const questionFlexMessage:FlexMessage = {
           height: 'sm',
           action: {
             type: 'postback',
+            displayText: "Buy",
             label: '日本で一番長い川は？',
-            data: 'quiz&1'
+            data: 'history&1'
           },
           margin: 'md'
         },
@@ -52,8 +54,9 @@ const questionFlexMessage:FlexMessage = {
           height: 'sm',
           action: {
             type: 'postback',
+            displayText: "Buy",
             label: '日本で一番面積の広い都道府県は？',
-            data: 'quiz&2'
+            data: 'history&2'
           },
           margin: 'md'
         }

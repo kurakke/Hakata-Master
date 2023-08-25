@@ -2,9 +2,10 @@ import { PostbackEvent } from '@line/bot-sdk';
 
 import { lineClient } from '../../../lib/line/lineClient';
 
-
-export const history = async (event: PostbackEvent, text: string) => {
-    const replyMessage:string = questionAndAnswer.find((item) => item.question === text)?.answer || '';
+export const history = async (event: PostbackEvent, data: string) => {
+    console.log('history');
+    const index = parseInt(data.split('&')[1], 10); // quiz&0 から 0 を取得
+    const replyMessage = questionAndAnswer[index]?.answer || '不明な質問です。';
     await lineClient.replyMessage(event.replyToken, { text: replyMessage, type: 'text' });
 }
 
@@ -22,6 +23,7 @@ const questionAndAnswer = [
         question: '日本で一番面積の広い都道府県は？',
     },
 ];
+
 
 // const flexMessage = {
 //     // 1
