@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 
 import { quiz } from './message/quiz';
 import { parrot } from './parrot';
+import { nextQuiz } from './postback/nextQuiz';
 
 export const webhookController = async (req: Request, res: Response) => {
   const events: WebhookEvent[] = req.body.events;
@@ -18,7 +19,7 @@ export const webhookController = async (req: Request, res: Response) => {
               if (text === '歴史') {
                 //
               } else if (text === 'クイズ') {
-                quiz(e.replyToken, 2);
+                quiz(e.replyToken, 3);
               } else {
                 parrot(text, e);
               }
@@ -32,9 +33,10 @@ export const webhookController = async (req: Request, res: Response) => {
               // ...
             } else if (e.postback.data.split('&')[0] === 'quiz') {
               if (e.postback.data.split('&')[3]) {
-                //
+                const data = e.postback.data.split('&');
+                nextQuiz(e.replyToken, data[1], data[2], data[3]);
               } else {
-                quiz(e.replyToken, 2);
+                quiz(e.replyToken, 3);
               }
             }
 
