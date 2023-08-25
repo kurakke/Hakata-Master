@@ -22,5 +22,5 @@ export const quiz = (replyToken: string, quizAmount: number) => {
 
   const quizContent = quizContents[quizIndexArray[0]];
 
-  lineClient.replyMessage(replyToken, [generateQuizFlex(quizContent, quizIndex, '0')]);
+  lineClient.replyMessage(replyToken, [generateQuizFlex(quizContent, quizIndex, '0', '1')]);
 };
