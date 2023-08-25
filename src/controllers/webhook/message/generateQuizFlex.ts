@@ -63,6 +63,7 @@ export const generateQuizFlex = (
             text: quizContent.question,
             type: 'text',
             weight: 'bold',
+            wrap: true,
           },
         ],
         layout: 'vertical',
