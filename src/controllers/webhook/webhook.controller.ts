@@ -1,8 +1,8 @@
 import { WebhookEvent } from '@line/bot-sdk';
 import { Request, Response } from 'express';
 
-import { parrot } from './parrot';
 import { quiz } from './message/quiz';
+import { parrot } from './parrot';
 
 export const webhookController = async (req: Request, res: Response) => {
   const events: WebhookEvent[] = req.body.events;
@@ -18,7 +18,7 @@ export const webhookController = async (req: Request, res: Response) => {
               if (text === '歴史') {
                 //
               } else if (text === 'クイズ') {
-                quiz(e.replyToken);
+                quiz(e.replyToken, 2);
               } else {
                 parrot(text, e);
               }
@@ -30,8 +30,12 @@ export const webhookController = async (req: Request, res: Response) => {
           case 'postback':
             if (e.postback.data.split(',')[0] === 'history') {
               // ...
-            } else if (e.postback.data.split(',')[0] === 'quiz') {
-              // ...
+            } else if (e.postback.data.split('&')[0] === 'quiz') {
+              if (e.postback.data.split('&')[3]) {
+                //
+              } else {
+                quiz(e.replyToken, 2);
+              }
             }
 
             break;

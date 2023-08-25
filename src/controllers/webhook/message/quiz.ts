@@ -3,9 +3,24 @@ import { lineClient } from '../../../lib/line/lineClient';
 
 import { generateQuizFlex } from './generateQuizFlex';
 
-export const quiz = (replyToken: string) => {
-  const randomArray = Math.floor(Math.random() * quizContents.length);
-  const quizContent = quizContents[randomArray];
+export const quiz = (replyToken: string, quizAmount: number) => {
+  const quizIndexSet = new Set<number>();
+  let quizIndex = '';
 
-  lineClient.replyMessage(replyToken, [generateQuizFlex(quizContent, randomArray.toString())]);
+  while (quizIndexSet.size < quizAmount) {
+    const random = Math.floor(Math.random() * quizContents.length);
+    quizIndexSet.add(random);
+  }
+
+  const quizIndexArray = [...quizIndexSet];
+
+  quizIndex += quizIndexArray[1];
+
+  for (let i = 2; i < quizIndexArray.length; i++) {
+    quizIndex = `${quizIndex}-${quizIndexArray[i]}`;
+  }
+
+  const quizContent = quizContents[quizIndexArray[0]];
+
+  lineClient.replyMessage(replyToken, [generateQuizFlex(quizContent, quizIndex)]);
 };

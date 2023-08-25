@@ -3,11 +3,11 @@ import shuffle from 'lodash.shuffle';
 
 import { Quiz } from '../../../types/Quiz';
 
-export const generateQuizFlex = (quizContent: Quiz, posedQuestion: string) => {
+export const generateQuizFlex = (quizContent: Quiz, quizIndex: string) => {
   const shuffledAnswer: FlexComponent[] = shuffle([
     {
       action: {
-        data: `quiz&${posedQuestion}&${quizContent.first.isCorrect}&0`,
+        data: `quiz&${quizIndex}&${quizContent.first.isCorrect}&0`,
         label: quizContent.first.answer,
         type: 'postback',
       },
@@ -17,7 +17,7 @@ export const generateQuizFlex = (quizContent: Quiz, posedQuestion: string) => {
     },
     {
       action: {
-        data: `quiz&${posedQuestion}&${quizContent.second.isCorrect}&0`,
+        data: `quiz&${quizIndex}&${quizContent.second.isCorrect}&0`,
         label: quizContent.second.answer,
         type: 'postback',
       },
@@ -27,7 +27,7 @@ export const generateQuizFlex = (quizContent: Quiz, posedQuestion: string) => {
     },
     {
       action: {
-        data: `quiz&${posedQuestion}&${quizContent.third.isCorrect}&0`,
+        data: `quiz&${quizIndex}&${quizContent.third.isCorrect}&0`,
         label: quizContent.third.answer,
         type: 'postback',
       },
@@ -37,7 +37,7 @@ export const generateQuizFlex = (quizContent: Quiz, posedQuestion: string) => {
     },
     {
       action: {
-        data: `quiz&${posedQuestion}&${quizContent.fourth.isCorrect}&0`,
+        data: `quiz&${quizIndex}&${quizContent.fourth.isCorrect}&0`,
         label: quizContent.fourth.answer,
         type: 'postback',
       },
