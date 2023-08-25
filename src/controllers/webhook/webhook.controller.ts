@@ -2,6 +2,7 @@ import { WebhookEvent } from '@line/bot-sdk';
 import { Request, Response } from 'express';
 
 import { parrot } from './parrot';
+import { quiz } from './message/quiz';
 
 export const webhookController = async (req: Request, res: Response) => {
   const events: WebhookEvent[] = req.body.events;
@@ -16,6 +17,8 @@ export const webhookController = async (req: Request, res: Response) => {
 
               if (text === '歴史') {
                 //
+              } else if (text === 'クイズ') {
+                quiz(e.replyToken);
               } else {
                 parrot(text, e);
               }
