@@ -2,60 +2,24 @@ import { Quiz } from '../../types/Quiz';
 
 export const quizContents: Quiz[] = [
   {
-    first: {
-      answer: 'そこまでやるのか',
-      isCorrect: 'f',
-    },
-    fourth: {
-      answer: 'そんなに大変でない',
-      isCorrect: 'f',
-    },
+    correctAnswer: '本当にしんどい',
+    first: 'そこまでやるのか',
     question: 'ほんなこつきつかー',
-    second: {
-      answer: '本当にしんどい',
-      isCorrect: 't',
-    },
-    third: {
-      answer: 'そんなことできない',
-      isCorrect: 'f',
-    },
+    second: 'そんなに大変でない',
+    third: 'そんなことできない',
   },
   {
-    first: {
-      answer: 'おなかすかせておくと良いことがある',
-      isCorrect: 'f',
-    },
-    fourth: {
-      answer: 'おなかがすいているのでおいしい',
-      isCorrect: 'f',
-    },
+    correctAnswer: 'おなかすいてないからいらない',
+    first: 'おなかすかせておくと良いことがある',
     question: 'おなかすいてなかけん、よかごとある',
-    second: {
-      answer: 'おなかすいてないからいらない',
-      isCorrect: 't',
-    },
-    third: {
-      answer: 'おなかいっぱいで良い気分だ',
-      isCorrect: 'f',
-    },
+    second: 'おなかがすいているのでおいしい',
+    third: 'おなかいっぱいで良い気分だ',
   },
   {
-    first: {
-      answer: '背中がかゆいよ',
-      isCorrect: 'f',
-    },
-    fourth: {
-      answer: 'ごはんできたよ',
-      isCorrect: 'f',
-    },
+    correctAnswer: 'しないといけないよ',
+    first: '背中がかゆいよ',
     question: 'せないかんめえもん',
-    second: {
-      answer: '全くわからないよ',
-      isCorrect: 'f',
-    },
-    third: {
-      answer: 'しないといけないよ',
-      isCorrect: 't',
-    },
+    second: '全くわからないよ',
+    third: 'ごはんできたよ',
   },
 ];

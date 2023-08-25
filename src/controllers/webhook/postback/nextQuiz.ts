@@ -9,9 +9,10 @@ export const nextQuiz = (
   isCorrect: string,
   correctAmount: string,
   posedQuizAmount: string,
+  correctAnswer: string,
 ) => {
   let currentCorrectAmount = correctAmount;
-  let answerText = '不正解です';
+  let answerText = `不正解です\n正解は、${correctAnswer}です`;
   const nextPosedQuizAmount = (Number(posedQuizAmount) + 1).toString();
 
   if (isCorrect === 't') {
@@ -26,7 +27,7 @@ export const nextQuiz = (
         type: 'text',
       },
       {
-        text: `正解数: ${correctAmount}`,
+        text: `正解数: ${currentCorrectAmount}`,
         type: 'text',
       },
     ]);

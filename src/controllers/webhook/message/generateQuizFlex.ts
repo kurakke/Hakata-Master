@@ -12,8 +12,8 @@ export const generateQuizFlex = (
   const shuffledAnswer: FlexComponent[] = shuffle([
     {
       action: {
-        data: `quiz&${quizIndex}&${quizContent.first.isCorrect}&${correctAmount}&${posedQuizAmount}`,
-        label: quizContent.first.answer,
+        data: `quiz&${quizIndex}&f&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}`,
+        label: quizContent.first,
         type: 'postback',
       },
       height: 'sm',
@@ -22,8 +22,8 @@ export const generateQuizFlex = (
     },
     {
       action: {
-        data: `quiz&${quizIndex}&${quizContent.second.isCorrect}&${correctAmount}&${posedQuizAmount}`,
-        label: quizContent.second.answer,
+        data: `quiz&${quizIndex}&f&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}`,
+        label: quizContent.second,
         type: 'postback',
       },
       height: 'sm',
@@ -32,8 +32,8 @@ export const generateQuizFlex = (
     },
     {
       action: {
-        data: `quiz&${quizIndex}&${quizContent.third.isCorrect}&${correctAmount}&${posedQuizAmount}`,
-        label: quizContent.third.answer,
+        data: `quiz&${quizIndex}&f&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}`,
+        label: quizContent.third,
         type: 'postback',
       },
       height: 'sm',
@@ -42,8 +42,8 @@ export const generateQuizFlex = (
     },
     {
       action: {
-        data: `quiz&${quizIndex}&${quizContent.fourth.isCorrect}&${correctAmount}&${posedQuizAmount}`,
-        label: quizContent.fourth.answer,
+        data: `quiz&${quizIndex}&t&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}`,
+        label: quizContent.correctAnswer,
         type: 'postback',
       },
       height: 'sm',
