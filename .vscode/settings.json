@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["openai", "postback", "Replyable", "unsubmitted"],
+  "cSpell.words": ["Datetime", "openai", "postback", "Replyable", "richmenu", "unsubmitted"],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
