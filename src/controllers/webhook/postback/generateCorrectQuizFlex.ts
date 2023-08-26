@@ -22,20 +22,28 @@ export const generateCorrectQuizFlex = (
             weight: 'bold',
           },
           {
+            action: {
+              label: '友達とシェア',
+              type: 'uri',
+              uri: encodedUri,
+            },
             contents: [
               {
-                action: {
-                  label: '友達とシェア',
-                  type: 'uri',
-                  uri: encodedUri,
-                },
-                height: 'sm',
-                style: 'primary',
-                type: 'button',
+                type: 'filler',
+              },
+              {
+                type: 'icon',
+                url: '',
+              },
+              {
+                text: '友達とシェア',
+                type: 'text',
+              },
+              {
+                type: 'filler',
               },
             ],
-            flex: 0,
-            layout: 'vertical',
+            layout: 'baseline',
             spacing: 'sm',
             type: 'box',
           },

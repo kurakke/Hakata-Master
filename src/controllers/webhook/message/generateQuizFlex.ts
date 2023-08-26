@@ -13,6 +13,7 @@ export const generateQuizFlex = (
     {
       action: {
         data: `quiz&${quizIndex}&f&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}&${quizContent.question}`,
+        displayText: quizContent.first,
         label: quizContent.first,
         type: 'postback',
       },
@@ -23,6 +24,7 @@ export const generateQuizFlex = (
     {
       action: {
         data: `quiz&${quizIndex}&f&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}&${quizContent.question}`,
+        displayText: quizContent.second,
         label: quizContent.second,
         type: 'postback',
       },
@@ -33,6 +35,7 @@ export const generateQuizFlex = (
     {
       action: {
         data: `quiz&${quizIndex}&f&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}&${quizContent.question}`,
+        displayText: quizContent.third,
         label: quizContent.third,
         type: 'postback',
       },
@@ -43,6 +46,7 @@ export const generateQuizFlex = (
     {
       action: {
         data: `quiz&${quizIndex}&t&${correctAmount}&${posedQuizAmount}&${quizContent.correctAnswer}&${quizContent.question}`,
+        displayText: quizContent.correctAnswer,
         label: quizContent.correctAnswer,
         type: 'postback',
       },

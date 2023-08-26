@@ -6,6 +6,7 @@ import { generateQuizFlex } from '../message/generateQuizFlex';
 
 import { generateCorrectQuizFlex } from './generateCorrectQuizFlex';
 import { generateIncorrectQuizFlex } from './generateIncorrectQuizFlex';
+import { generateQuizResultFlex } from './generateQuizResultFlex';
 
 export const nextQuiz = async (
   replyToken: string,
@@ -31,13 +32,9 @@ export const nextQuiz = async (
   }
 
   if (quizAmount === Number(posedQuizAmount)) {
-    lineClient.replyMessage(replyToken, [
-      answerFlex,
-      {
-        text: `正解数: ${currentCorrectAmount}`,
-        type: 'text',
-      },
-    ]);
+    const quizResultFlex = generateQuizResultFlex(quizAmount, Number(currentCorrectAmount));
+
+    lineClient.replyMessage(replyToken, [answerFlex, quizResultFlex]);
   } else {
     // 最初の-で分割
     const quizIndexSplitted = quizIndex.split(/(?<=^[^-]+)-/);
