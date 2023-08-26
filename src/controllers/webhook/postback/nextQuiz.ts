@@ -24,16 +24,16 @@ export const nextQuiz = async (
 
   if (isCorrect === 't') {
     currentCorrectAmount = (Number(correctAmount) + 1).toString();
-    answerFlex = generateCorrectQuizFlex();
+    answerFlex = generateCorrectQuizFlex(profile.displayName);
   } else {
-    answerFlex = generateIncorrectQuizFlex(correctAnswer);
+    answerFlex = generateIncorrectQuizFlex(correctAnswer, profile.displayName);
   }
 
   if (quizAmount === Number(posedQuizAmount)) {
     lineClient.replyMessage(replyToken, [
       answerFlex,
       {
-        text: `正解数: ${currentCorrectAmount} ${profile.displayName}`,
+        text: `正解数: ${currentCorrectAmount}`,
         type: 'text',
       },
     ]);
