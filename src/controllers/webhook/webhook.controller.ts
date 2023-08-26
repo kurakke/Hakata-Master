@@ -36,10 +36,10 @@ export const webhookController = async (req: Request, res: Response) => {
             break;
           case 'postback':
             if (e.postback.data.split('&')[0] === 'history') {
-              historyMessage(e.replyToken, e.postback.data.split('&')[0]);
-
               if (e.postback.data.split('&')[1]) {
                 await historyPostback(e, e.postback.data);
+              } else {
+                historyMessage(e.replyToken, e.postback.data.split('&')[0]);
               }
               // ...
             } else if (e.postback.data.split('&')[0] === 'quiz') {

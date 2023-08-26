@@ -16,15 +16,15 @@ const questionFlexMessage: FlexMessage = {
         {
           margin: 'md',
           size: 'md',
-          text: 'Please select a question:',
+          text: '何について知りたいですか？',
           type: 'text',
           weight: 'bold',
         },
         {
           action: {
             data: 'history&0',
-            displayText: 'Buy',
-            label: '日本で一番高い山は？',
+            displayText: '博多弁って何？',
+            label: '博多弁って何？',
             type: 'postback',
           },
           height: 'sm',
@@ -35,8 +35,8 @@ const questionFlexMessage: FlexMessage = {
         {
           action: {
             data: 'history&1',
-            displayText: 'Buy',
-            label: '日本で一番長い川は？',
+            displayText: '博多弁の特徴は？',
+            label: '博多弁の特徴は？',
             type: 'postback',
           },
           height: 'sm',
@@ -47,8 +47,20 @@ const questionFlexMessage: FlexMessage = {
         {
           action: {
             data: 'history&2',
-            displayText: 'Buy',
-            label: '日本で一番面積の広い都道府県は？',
+            displayText: '博多弁の歴史は？',
+            label: '博多弁の歴史は？',
+            type: 'postback',
+          },
+          height: 'sm',
+          margin: 'md',
+          style: 'secondary',
+          type: 'button',
+        },
+        {
+          action: {
+            data: 'history&3',
+            displayText: '博多の由来は？',
+            label: '博多の由来は？',
             type: 'postback',
           },
           height: 'sm',
