@@ -1,7 +1,11 @@
 import { FlexMessage } from '@line/bot-sdk';
 
-export const generateCorrectQuizFlex = (userName: string) => {
-  const uri = `https://line.me/R/share?text=${userName}さんが博多弁をシェアしたよ\n博多弁をかわいく言ってみよう！\nほんなこつきつかー\n意味: 本当にしんどい`;
+export const generateCorrectQuizFlex = (
+  userName: string,
+  correctAnswer: string,
+  question: string,
+) => {
+  const uri = `https://line.me/R/share?text=${userName}さんが博多弁をシェアしたよ\n博多弁をかわいく言ってみよう！\n${question}\n意味: ${correctAnswer}`;
   const encodedUri = encodeURI(uri);
 
   const correctQuizFlex: FlexMessage = {

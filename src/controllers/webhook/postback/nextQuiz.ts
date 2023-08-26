@@ -16,6 +16,7 @@ export const nextQuiz = async (
   correctAmount: string,
   posedQuizAmount: string,
   correctAnswer: string,
+  question: string,
 ) => {
   let currentCorrectAmount = correctAmount;
   let answerFlex: FlexMessage;
@@ -24,9 +25,9 @@ export const nextQuiz = async (
 
   if (isCorrect === 't') {
     currentCorrectAmount = (Number(correctAmount) + 1).toString();
-    answerFlex = generateCorrectQuizFlex(profile.displayName);
+    answerFlex = generateCorrectQuizFlex(profile.displayName, correctAnswer, question);
   } else {
-    answerFlex = generateIncorrectQuizFlex(correctAnswer, profile.displayName);
+    answerFlex = generateIncorrectQuizFlex(profile.displayName, correctAnswer, question);
   }
 
   if (quizAmount === Number(posedQuizAmount)) {

@@ -43,7 +43,7 @@ export const webhookController = async (req: Request, res: Response) => {
               }
               // ...
             } else if (e.postback.data.split('&')[0] === 'quiz') {
-              if (e.postback.data.split('&')[5]) {
+              if (e.postback.data.split('&')[6]) {
                 const data = e.postback.data.split('&');
                 nextQuiz(
                   e.replyToken,
@@ -54,6 +54,7 @@ export const webhookController = async (req: Request, res: Response) => {
                   data[3],
                   data[4],
                   data[5],
+                  data[6],
                 );
               } else {
                 quiz(e.replyToken, 3);
