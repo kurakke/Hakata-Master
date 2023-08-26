@@ -22,29 +22,46 @@ export const generateCorrectQuizFlex = (
             weight: 'bold',
           },
           {
-            action: {
-              label: '友達とシェア',
-              type: 'uri',
-              uri: encodedUri,
-            },
+            backgroundColor: '#00E900',
             contents: [
               {
                 type: 'filler',
               },
               {
-                type: 'icon',
-                url: '',
-              },
-              {
-                text: '友達とシェア',
-                type: 'text',
+                action: {
+                  label: '友達とシェア',
+                  type: 'uri',
+                  uri: encodedUri,
+                },
+                contents: [
+                  {
+                    type: 'filler',
+                  },
+                  {
+                    type: 'icon',
+                    url: 'https://drive.google.com/uc?id=1quZjpzBILWiml7WnXU1df4_xLJAUgmxk',
+                  },
+                  {
+                    flex: 0,
+                    text: '友達とシェア',
+                    type: 'text',
+                  },
+                  {
+                    type: 'filler',
+                  },
+                ],
+                layout: 'baseline',
+                spacing: 'sm',
+                type: 'box',
               },
               {
                 type: 'filler',
               },
             ],
-            layout: 'baseline',
-            spacing: 'sm',
+            cornerRadius: '4px',
+            height: '40px',
+            layout: 'vertical',
+            margin: 'sm',
             type: 'box',
           },
         ],
