@@ -1,6 +1,11 @@
+import { FlexMessage } from '@line/bot-sdk';
+
 import { quizContents } from '../../../constants/line/quizContents';
 import { lineClient } from '../../../lib/line/lineClient';
 import { generateQuizFlex } from '../message/generateQuizFlex';
+
+import { generateCorrectQuizFlex } from './generateCorrectQuizFlex';
+import { generateIncorrectQuizFlex } from './generateIncorrectQuizFlex';
 
 export const nextQuiz = (
   replyToken: string,
@@ -12,20 +17,19 @@ export const nextQuiz = (
   correctAnswer: string,
 ) => {
   let currentCorrectAmount = correctAmount;
-  let answerText = `不正解です\n正解は、${correctAnswer}です`;
+  let answerFlex: FlexMessage;
   const nextPosedQuizAmount = (Number(posedQuizAmount) + 1).toString();
 
   if (isCorrect === 't') {
     currentCorrectAmount = (Number(correctAmount) + 1).toString();
-    answerText = '正解です';
+    answerFlex = generateCorrectQuizFlex();
+  } else {
+    answerFlex = generateIncorrectQuizFlex(correctAnswer);
   }
 
   if (quizAmount === Number(posedQuizAmount)) {
     lineClient.replyMessage(replyToken, [
-      {
-        text: answerText,
-        type: 'text',
-      },
+      answerFlex,
       {
         text: `正解数: ${currentCorrectAmount}`,
         type: 'text',
@@ -44,12 +48,6 @@ export const nextQuiz = (
       nextPosedQuizAmount,
     );
 
-    lineClient.replyMessage(replyToken, [
-      {
-        text: answerText,
-        type: 'text',
-      },
-      quizFlex,
-    ]);
+    lineClient.replyMessage(replyToken, [answerFlex, quizFlex]);
   }
 };
