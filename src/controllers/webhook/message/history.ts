@@ -1,68 +1,68 @@
-import { FlexMessage, MessageEvent } from '@line/bot-sdk';
+import { FlexMessage } from '@line/bot-sdk';
 
 import { lineClient } from '../../../lib/line/lineClient';
 
-export const history = async (event: MessageEvent, text: string) => {
+export const history = async (replyToken: string, text: string) => {
   // let state;
-  if (text === '歴史') {
-    await lineClient.replyMessage(event.replyToken, questionFlexMessage);
+  if (text === '歴史' || text === 'history') {
+    await lineClient.replyMessage(replyToken, questionFlexMessage);
   }
-}
-const questionFlexMessage:FlexMessage = {
-  type: 'flex',
+};
+const questionFlexMessage: FlexMessage = {
   altText: 'Quiz questions list',
   contents: {
-    type: 'bubble',
     body: {
-      type: 'box',
-      layout: 'vertical',
       contents: [
         {
-          type: 'text',
-          text: 'Please select a question:',
-          weight: 'bold',
+          margin: 'md',
           size: 'md',
-          margin: 'md'
+          text: 'Please select a question:',
+          type: 'text',
+          weight: 'bold',
         },
         {
-          type: 'button',
-          style: 'secondary',
-          height: 'sm',
           action: {
-            type: 'postback',
-            displayText: "Buy",
+            data: 'history&0',
+            displayText: 'Buy',
             label: '日本で一番高い山は？',
-            data: 'history&0'
+            type: 'postback',
           },
-          margin: 'md'
+          height: 'sm',
+          margin: 'md',
+          style: 'secondary',
+          type: 'button',
         },
         {
-          type: 'button',
-          style: 'secondary',
-          height: 'sm',
           action: {
-            type: 'postback',
-            displayText: "Buy",
+            data: 'history&1',
+            displayText: 'Buy',
             label: '日本で一番長い川は？',
-            data: 'history&1'
+            type: 'postback',
           },
-          margin: 'md'
+          height: 'sm',
+          margin: 'md',
+          style: 'secondary',
+          type: 'button',
         },
         {
-          type: 'button',
-          style: 'secondary',
-          height: 'sm',
           action: {
-            type: 'postback',
-            displayText: "Buy",
+            data: 'history&2',
+            displayText: 'Buy',
             label: '日本で一番面積の広い都道府県は？',
-            data: 'history&2'
+            type: 'postback',
           },
-          margin: 'md'
-        }
-      ]
-    }
-  }
+          height: 'sm',
+          margin: 'md',
+          style: 'secondary',
+          type: 'button',
+        },
+      ],
+      layout: 'vertical',
+      type: 'box',
+    },
+    type: 'bubble',
+  },
+  type: 'flex',
 };
 
 // LINE Messaging API を使用して Flex Message を送信
