@@ -1,15 +1,20 @@
 import { WebhookEvent } from '@line/bot-sdk';
 import { Request, Response } from 'express';
 
+import { UserMode } from '../../types/UserMode';
+
 import { history as historyMessage } from './message/history';
 import { quiz } from './message/quiz';
 import { parrot } from './parrot';
 import { history as historyPostback } from './postback/hitory';
 import { nextQuiz } from './postback/nextQuiz';
+import { startTraining } from './postback/startTraining';
 import { training } from './training';
 
 export const webhookController = async (req: Request, res: Response) => {
   const events: WebhookEvent[] = req.body.events;
+
+  const userModes: UserMode[] = [];
 
   const results = await Promise.all(
     events.map(async (e: WebhookEvent) => {
@@ -25,9 +30,15 @@ export const webhookController = async (req: Request, res: Response) => {
               } else if (splittedTexts[0] === '歴史') {
                 historyMessage(splittedTexts[0], splittedTexts[0]);
               } else if (splittedTexts[0] === '練習') {
-                training(splittedTexts[1], e.replyToken);
+                startTraining(userModes, e.source.userId || '', e.replyToken);
               } else {
-                parrot(splittedTexts[0], e);
+                console.log(userModes);
+
+                if (userModes.find((elm) => elm.userId === e.source.userId)?.mode === 'training') {
+                  training(e.message.text, e.replyToken);
+                } else {
+                  parrot(splittedTexts[0], e);
+                }
               }
             } else {
               break;
