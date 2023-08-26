@@ -1,10 +1,12 @@
-import { RichMenu } from '@line/bot-sdk';
+import { RichMenuObject } from '../types/RichMenuObject';
 
-export const MAIN_MENU_OBJECT: RichMenu = {
+export const MAIN_MENU_OBJECT: RichMenuObject = {
   areas: [
     {
       action: {
         data: 'quiz',
+        displayText: 'クイズをしよう！',
+        inputOption: 'closeRichMenu',
         type: 'postback',
       },
       bounds: {
@@ -17,6 +19,8 @@ export const MAIN_MENU_OBJECT: RichMenu = {
     {
       action: {
         data: 'history',
+        displayText: '博多について知りたい！',
+        inputOption: 'closeRichMenu',
         type: 'postback',
       },
       bounds: {
@@ -29,6 +33,8 @@ export const MAIN_MENU_OBJECT: RichMenu = {
     {
       action: {
         data: 'training',
+        fillInText: '博多弁を練習する\nこんにちは',
+        inputOption: 'openKeyboard',
         type: 'postback',
       },
       bounds: {
