@@ -23,7 +23,7 @@ export const webhookController = async (req: Request, res: Response) => {
               if (splittedTexts[0] === 'クイズ') {
                 quiz(e.replyToken, 3);
               } else if (splittedTexts[0] === '歴史') {
-                historyMessage(e, splittedTexts[0]);
+                historyMessage(splittedTexts[0], splittedTexts[0]);
               } else if (splittedTexts[0] === '練習') {
                 training(splittedTexts[1], e.replyToken);
               } else {
@@ -36,8 +36,11 @@ export const webhookController = async (req: Request, res: Response) => {
             break;
           case 'postback':
             if (e.postback.data.split('&')[0] === 'history') {
-              console.log('history');
-              await historyPostback(e, e.postback.data);
+              historyMessage(e.replyToken, e.postback.data.split('&')[0]);
+
+              if (e.postback.data.split('&')[1]) {
+                await historyPostback(e, e.postback.data);
+              }
               // ...
             } else if (e.postback.data.split('&')[0] === 'quiz') {
               if (e.postback.data.split('&')[5]) {
