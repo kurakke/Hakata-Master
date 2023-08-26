@@ -3,7 +3,7 @@ import { middleware } from '@line/bot-sdk';
 import express, { Request, Response } from 'express';
 
 import { richMenu } from './features/line/richMenu';
-import { resetRichMenu } from './lib/line/rich-menu/resetRichMenu';
+// import { resetRichMenu } from './lib/line/rich-menu/resetRichMenu';
 import { webhookRouter } from './routes/webhook.route';
 import { middlewareConfig } from './utils/lineConfig';
 
