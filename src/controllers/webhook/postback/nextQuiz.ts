@@ -7,8 +7,9 @@ import { generateQuizFlex } from '../message/generateQuizFlex';
 import { generateCorrectQuizFlex } from './generateCorrectQuizFlex';
 import { generateIncorrectQuizFlex } from './generateIncorrectQuizFlex';
 
-export const nextQuiz = (
+export const nextQuiz = async (
   replyToken: string,
+  userId: string,
   quizAmount: number,
   quizIndex: string,
   isCorrect: string,
@@ -19,6 +20,7 @@ export const nextQuiz = (
   let currentCorrectAmount = correctAmount;
   let answerFlex: FlexMessage;
   const nextPosedQuizAmount = (Number(posedQuizAmount) + 1).toString();
+  const profile = await lineClient.getProfile(userId);
 
   if (isCorrect === 't') {
     currentCorrectAmount = (Number(correctAmount) + 1).toString();
@@ -31,7 +33,7 @@ export const nextQuiz = (
     lineClient.replyMessage(replyToken, [
       answerFlex,
       {
-        text: `正解数: ${currentCorrectAmount}`,
+        text: `正解数: ${currentCorrectAmount} ${profile.displayName}`,
         type: 'text',
       },
     ]);
