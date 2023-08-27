@@ -23,7 +23,7 @@ export const webhookController = async (req: Request, res: Response) => {
               if (splittedTexts[0] === 'クイズ') {
                 quiz(e.replyToken, 3);
               } else if (splittedTexts[0] === '歴史') {
-                historyMessage(splittedTexts[0], splittedTexts[0]);
+                historyMessage(e.replyToken, splittedTexts[0]);
               } else if (splittedTexts[0] === '博多弁を練習する') {
                 training(splittedTexts[1], e.replyToken, e.source.userId || '');
               } else {
