@@ -5,7 +5,7 @@ export const generateTrainingFlex = (reply: string, userName: string) => {
   const encodedUri = encodeURI(uri);
 
   const trainingFlex: FlexMessage = {
-    altText: 'flex message',
+    altText: reply,
     contents: {
       body: {
         contents: [

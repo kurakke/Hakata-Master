@@ -9,7 +9,7 @@ export const generateCorrectQuizFlex = (
   const encodedUri = encodeURI(uri);
 
   const correctQuizFlex: FlexMessage = {
-    altText: 'flex message',
+    altText: '正解！',
     contents: {
       body: {
         contents: [
