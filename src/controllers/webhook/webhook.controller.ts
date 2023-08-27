@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 
 import { history as historyMessage } from './message/history';
 import { quiz } from './message/quiz';
-import { parrot } from './parrot';
 import { history as historyPostback } from './postback/hitory';
 import { nextQuiz } from './postback/nextQuiz';
 import { training } from './training';
@@ -26,8 +25,6 @@ export const webhookController = async (req: Request, res: Response) => {
                 historyMessage(e.replyToken, splittedTexts[0]);
               } else if (splittedTexts[0] === '博多弁を練習する') {
                 training(splittedTexts[1], e.replyToken, e.source.userId || '');
-              } else {
-                parrot(splittedTexts[0], e);
               }
             } else {
               break;
