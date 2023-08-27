@@ -2,7 +2,7 @@ import { FlexMessage } from '@line/bot-sdk';
 
 export const generateQuizResultFlex = (quizAmount: number, correctAmount: number) => {
   const quizResultFlex: FlexMessage = {
-    altText: 'flex message',
+    altText: '結果発表',
     contents: {
       body: {
         contents: [

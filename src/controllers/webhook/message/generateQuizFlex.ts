@@ -57,7 +57,7 @@ export const generateQuizFlex = (
   ]);
 
   const quizFlex: FlexMessage = {
-    altText: 'flex message',
+    altText: quizContent.question,
     contents: {
       body: {
         contents: [

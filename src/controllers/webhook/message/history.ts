@@ -9,7 +9,7 @@ export const history = async (replyToken: string, text: string) => {
   }
 };
 const questionFlexMessage: FlexMessage = {
-  altText: 'Quiz questions list',
+  altText: '歴史の何について知りたいですか？',
   contents: {
     body: {
       contents: [

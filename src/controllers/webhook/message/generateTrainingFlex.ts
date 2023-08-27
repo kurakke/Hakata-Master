@@ -1,25 +1,20 @@
 import { FlexMessage } from '@line/bot-sdk';
 
-export const generateCorrectQuizFlex = (
-  userName: string,
-  correctAnswer: string,
-  question: string,
-) => {
-  const uri = `https://line.me/R/share?text=${userName}さんが博多弁をシェアしたよ\n博多弁をかわいく言ってみよう！\n${question}\n意味: ${correctAnswer}`;
+export const generateTrainingFlex = (reply: string, userName: string) => {
+  const uri = `https://line.me/R/share?text=${userName}さんが博多弁をシェアしたよ\n博多弁をかわいく言ってみよう！\n${reply}`;
   const encodedUri = encodeURI(uri);
 
-  const correctQuizFlex: FlexMessage = {
-    altText: '正解！',
+  const trainingFlex: FlexMessage = {
+    altText: reply,
     contents: {
       body: {
         contents: [
           {
             align: 'center',
-            color: '#FF0000',
-            size: 'xl',
-            text: '正解!',
+            size: 'sm',
+            text: reply,
             type: 'text',
-            weight: 'bold',
+            wrap: true,
           },
           {
             backgroundColor: '#00E900',
@@ -73,5 +68,5 @@ export const generateCorrectQuizFlex = (
     type: 'flex',
   };
 
-  return correctQuizFlex;
+  return trainingFlex;
 };
