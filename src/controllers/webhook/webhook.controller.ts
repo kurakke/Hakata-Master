@@ -19,8 +19,6 @@ export const webhookController = async (req: Request, res: Response) => {
               // 最初の\nでのみ分割
               const splittedTexts = e.message.text.split(/(?<=^[^\n]+)\n/);
 
-              console.log(splittedTexts[0] === '博多について知りたい！');
-
               if (splittedTexts[0] === 'クイズをしよう！') {
                 quiz(e.replyToken, 3);
               } else if (splittedTexts[0] === '博多について知りたい！') {
