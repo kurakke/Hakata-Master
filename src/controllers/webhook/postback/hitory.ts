@@ -35,7 +35,7 @@ const questionAndAnswer = [
 ];
 
 const questionFlexMessage: FlexMessage = {
-  altText: 'Quiz questions list',
+  altText: '歴史の何について知りたいですか？',
   contents: {
     body: {
       contents: [
