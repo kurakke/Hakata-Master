@@ -25,7 +25,7 @@ export const webhookController = async (req: Request, res: Response) => {
               } else if (splittedTexts[0] === '歴史') {
                 historyMessage(splittedTexts[0], splittedTexts[0]);
               } else if (splittedTexts[0] === '博多弁を練習する') {
-                training(splittedTexts[1], e.replyToken);
+                training(splittedTexts[1], e.replyToken, e.source.userId || '');
               } else {
                 parrot(splittedTexts[0], e);
               }

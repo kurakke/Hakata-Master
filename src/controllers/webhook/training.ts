@@ -1,11 +1,12 @@
-import { TextMessage } from '@line/bot-sdk';
 import { CreateChatCompletionRequestMessage } from 'openai/resources/chat';
 
 import { lineClient } from '../../lib/line/lineClient';
 import { askGPT } from '../../lib/openAi/askGPT';
 import { openAiConfig } from '../../utils/openAiConfig';
 
-export const training = async (text: string, replyToken: string) => {
+import { generateTrainingFlex } from './message/generateTrainingFlex';
+
+export const training = async (text: string, replyToken: string, userId: string) => {
   if (openAiConfig.apiKey) {
     const systems: CreateChatCompletionRequestMessage[] = [
       {
@@ -21,11 +22,10 @@ export const training = async (text: string, replyToken: string) => {
 
     const reply = (await askGPT(text, messages)) || '';
 
-    const replyMessage: TextMessage = {
-      text: reply,
-      type: 'text',
-    };
+    const profile = await lineClient.getProfile(userId);
 
-    lineClient.replyMessage(replyToken, replyMessage);
+    const trainingFlex = generateTrainingFlex(reply, profile.displayName);
+
+    lineClient.replyMessage(replyToken, trainingFlex);
   }
 };
