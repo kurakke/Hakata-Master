@@ -1,5 +1,6 @@
 import { CreateChatCompletionRequestMessage } from 'openai/resources/chat';
 
+import { replaceTargets } from '../../constants/line/replaceTargets';
 import { lineClient } from '../../lib/line/lineClient';
 import { askGPT } from '../../lib/openAi/askGPT';
 import { openAiConfig } from '../../utils/openAiConfig';
@@ -10,7 +11,7 @@ export const training = async (text: string, replyToken: string, userId: string)
   if (openAiConfig.apiKey) {
     const systems: CreateChatCompletionRequestMessage[] = [
       {
-        content: '博多弁で話す人',
+        content: 'ユーザーと日本語の標準語で話してください',
         role: 'system',
       },
     ];
@@ -20,12 +21,16 @@ export const training = async (text: string, replyToken: string, userId: string)
 
     const messages: CreateChatCompletionRequestMessage[] = [...systems, ...chatHistory];
 
-    const reply = (await askGPT(text, messages)) || '';
+    let reply = (await askGPT(text, messages)) || '';
 
     const profile = await lineClient.getProfile(userId);
 
+    for (const replaceTarget of replaceTargets) {
+      reply = reply.replace(replaceTarget.target, replaceTarget.replace);
+    }
+
     const trainingFlex = generateTrainingFlex(reply, profile.displayName);
 
-    lineClient.replyMessage(replyToken, trainingFlex);
+    await lineClient.replyMessage(replyToken, trainingFlex);
   }
 };

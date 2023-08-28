@@ -24,7 +24,7 @@ export const webhookController = async (req: Request, res: Response) => {
               } else if (splittedTexts[0] === '博多について知りたい！') {
                 historyMessage(e.replyToken);
               } else if (splittedTexts[0] === '博多弁を練習する') {
-                training(splittedTexts[1], e.replyToken, e.source.userId || '');
+                await training(splittedTexts[1], e.replyToken, e.source.userId || '');
               }
             } else {
               break;
