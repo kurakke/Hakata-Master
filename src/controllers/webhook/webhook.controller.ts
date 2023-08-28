@@ -19,12 +19,12 @@ export const webhookController = async (req: Request, res: Response) => {
               // 最初の\nでのみ分割
               const splittedTexts = e.message.text.split(/(?<=^[^\n]+)\n/);
 
-              if (splittedTexts[0] === 'クイズ') {
+              if (splittedTexts[0] === 'クイズをしよう！') {
                 quiz(e.replyToken, 3);
-              } else if (splittedTexts[0] === '歴史') {
-                historyMessage(e.replyToken, splittedTexts[0]);
+              } else if (splittedTexts[0] === '博多について知りたい！') {
+                historyMessage(e.replyToken);
               } else if (splittedTexts[0] === '博多弁を練習する') {
-                training(splittedTexts[1], e.replyToken, e.source.userId || '');
+                await training(splittedTexts[1], e.replyToken, e.source.userId || '');
               }
             } else {
               break;
@@ -36,7 +36,7 @@ export const webhookController = async (req: Request, res: Response) => {
               if (e.postback.data.split('&')[1]) {
                 await historyPostback(e, e.postback.data);
               } else {
-                historyMessage(e.replyToken, e.postback.data.split('&')[0]);
+                historyMessage(e.replyToken);
               }
               // ...
             } else if (e.postback.data.split('&')[0] === 'quiz') {

@@ -14,6 +14,7 @@ export const askGPT = async (text: string, messages: CreateChatCompletionRequest
   }));
 
   const completions: ChatCompletion = await openAi.chat.completions.create({
+    max_tokens: 50,
     messages: chat,
     model: 'gpt-3.5-turbo',
   });

@@ -2,11 +2,8 @@ import { FlexMessage } from '@line/bot-sdk';
 
 import { lineClient } from '../../../lib/line/lineClient';
 
-export const history = async (replyToken: string, text: string) => {
-  // let state;
-  if (text === '歴史' || text === 'history') {
-    await lineClient.replyMessage(replyToken, questionFlexMessage);
-  }
+export const history = async (replyToken: string) => {
+  await lineClient.replyMessage(replyToken, questionFlexMessage);
 };
 const questionFlexMessage: FlexMessage = {
   altText: '歴史の何について知りたいですか？',
