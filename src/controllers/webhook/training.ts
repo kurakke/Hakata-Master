@@ -9,7 +9,12 @@ import { generateTrainingFlex } from './message/generateTrainingFlex';
 
 export const training = async (text: string, replyToken: string, userId: string) => {
   if (openAiConfig.apiKey) {
-    const systems: CreateChatCompletionRequestMessage[] = [];
+    const systems: CreateChatCompletionRequestMessage[] = [
+      {
+        content: '博多弁を話す可愛い女の子',
+        role: 'system',
+      },
+    ];
 
     // TODO: チャット履歴を取得する必要がある
     const chatHistory: CreateChatCompletionRequestMessage[] = [];
